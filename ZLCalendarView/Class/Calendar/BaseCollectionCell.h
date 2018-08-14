@@ -10,4 +10,15 @@
 
 @interface BaseCollectionCell : UICollectionViewCell
 
+@property (nonatomic, strong) id cellData;
+
++ (NSString *)cellIdentifier;
++ (NSNumber *)heightForCell:(id)cellData;
++ (NSNumber *)widthForCell:(id)cellData;
++ (instancetype)dequeueCellForCollection:(UICollectionView *)collectionView
+                            forIndexPath:(NSIndexPath *)indexPath;
+- (void)reloadData;
+
+- (void)cellAddSubview:(UIView *)view;
+
 @end

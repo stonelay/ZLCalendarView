@@ -8,7 +8,13 @@
 
 #import "CalendarDemoController.h"
 
-@interface CalendarDemoController ()
+#import "ZLCalendarView.h"
+#import "ZLCalendarModel.h"
+
+@interface CalendarDemoController ()<ZLCalendarViewDelegate>
+
+@property (nonatomic, strong) NSMutableArray *items;
+@property (nonatomic, strong) ZLCalendarView *calendarView;
 
 @end
 
@@ -16,22 +22,26 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    [self.view addSubview:self.calendarView];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (NSString *)controllerTitle {
+    return @"Calendar Demo";
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+#pragma mark - property
+- (ZLCalendarView *)calendarView {
+    if (!_calendarView) {
+        _calendarView = [[ZLCalendarView alloc] initWithFrame:CGRectMake(0, 64, SCREENWIDTH, 300 * SCALE)];
+        _calendarView.curCalendarModel = [ZLCalendarModel instanceWithDate:[NSDate new]];
+        _calendarView.delegate = self;
+    }
+    return _calendarView;
 }
-*/
+
+#pragma mark - calendarview delegate
+- (void)calendarView:(ZLCalendarView *)calendarView didSelectedDate:(ZLCalendarModel *)model {
+    NSLog(@"%ld, %ld, %ld",(long)model.year, (long)model.month, (long)model.day);
+}
 
 @end
