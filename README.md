@@ -2,6 +2,4 @@
 
 ### 日历Demo
 
-### des
-![image](https://github.com/stonelay/ZLCalendarView/Screenshots/main1.png)
-
+![image](https://github.com/stonelay/ZLCalendarView/raw/master/Screenshots/main1.png)
